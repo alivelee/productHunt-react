@@ -1,0 +1,10 @@
+{
+  "extends": ["plugin:react/recommended", "standard"],
+  "plugins": [
+    "react"
+  ],
+  "env": {
+    "browser": true,
+    "es6": true
+}
+}
