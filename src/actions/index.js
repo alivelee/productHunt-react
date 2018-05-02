@@ -11,7 +11,9 @@ import {
 
 import {
   getTopicRequest,
-  getTopicAction
+  getTopicAction,
+  getTopicDetailRequest,
+  getTopicDetailAction
 } from './topics'
 
 import {
@@ -30,5 +32,7 @@ export {
   getTopicRequest,
   getTopicAction,
   getPostsRequest,
-  getPostsAction
+  getPostsAction,
+  getTopicDetailRequest,
+  getTopicDetailAction
 }

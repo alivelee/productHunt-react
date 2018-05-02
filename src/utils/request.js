@@ -1,5 +1,6 @@
 import { store } from '../store'
 import { push } from 'react-router-redux'
+import { setCookie, getCookie } from './cookie'
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -35,13 +36,25 @@ function checkStatus (response) {
 }
 
 export default function request (url, options) {
+  console.log(options)
+  const accessToken = getCookie('accessToken')
+  let newOptions
   const defaultOptions = {
     credentials: 'include'
   }
-  const newOptions = {
-    ...defaultOptions,
-    ...options
+  if (accessToken) {
+    newOptions = {
+      headers: {
+        Authorization: `${getCookie('tokenType')} ${getCookie('publicAccessToken')}`
+      }
+    }
+  } else {
+    newOptions = {
+      ...options,
+      ...defaultOptions
+    }
   }
+  console.log(newOptions)
   if (newOptions.method === 'POST' || newOptions.method === 'put') {
     newOptions.headers = {
       Accept: 'application/json',

@@ -5,24 +5,22 @@ export async function getPosts (params, headers) {
   console.log('params', params, headers)
   if (!params) {
     return request(`/api/posts/all`, {
-      method: 'GET',
-      headers
+      method: 'GET'
     })
   }
   return request(`/api/posts/all?${stringify(params)}`, {
-    method: 'GET',
-    headers
+    method: 'GET'
   })
 }
 
 export async function getTechPosts (headers) {
   return request('/api/me/feed', {
-    headers
+    method: 'GET'
   })
 }
 
 export async function getPostDetail (postId, headers) {
   return request(`/api/posts/${postId}`, {
-    headers
+    method: 'GET'
   })
 }

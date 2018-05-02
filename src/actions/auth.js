@@ -19,9 +19,7 @@ export function * getTokenAction (action) {
       type: actionTypes.GET_TOKEN_SUCCESS,
       payload: tokenResponse
     })
-    const userResponse = yield call(getUserInfo, {
-      Authorization: `${tokenResponse.token_type} ${tokenResponse.access_token}`
-    })
+    const userResponse = yield call(getUserInfo)
     yield put({
       type: actionTypes.GET_USERINFO_SUCCESS,
       payload: userResponse
