@@ -51,7 +51,7 @@ class TopicDetailListItem extends React.Component {
           </CardContent>
           <CardActions>
             <Button size="small" color="primary">
-            Share
+              Learn More
             </Button>
           </CardActions>
         </Card>

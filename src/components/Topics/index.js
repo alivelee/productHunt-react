@@ -19,11 +19,13 @@ const paperStyle = {
 const styles = theme => ({
   root: {
     width: '100%',
-    margin: '5px',
     backgroundColor: theme.palette.background.paper
   },
   progress: {
     margin: theme.spacing.unit * 2
+  },
+  loadingItem: {
+    textAlign: 'center'
   }
 })
 
@@ -44,7 +46,7 @@ class Topics extends React.Component {
       <React.Fragment>
         {topicsData.length === 0 &&
           <Grid container justify='center' alignContent='center'>
-            <Grid item xs={12} className={this.props.classes.loadingItem}>
+            <Grid item xs={12} className={this.props.classes.loadingItem} >
               <CircularProgress className={this.props.classes.progress} size={50} />
             </Grid>
           </Grid>
@@ -66,7 +68,6 @@ class Topics extends React.Component {
                   }
                 </List>
               </Grid>
-
             </Paper>
           </Grid>}
 
