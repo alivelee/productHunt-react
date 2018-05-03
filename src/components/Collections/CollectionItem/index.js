@@ -9,7 +9,8 @@ import dayjs from 'dayjs'
 const styles = theme => ({
   card: {
     width: 415,
-    height: 300
+    height: 300,
+    margin: '10px'
   },
   actions: {
     display: 'flex'

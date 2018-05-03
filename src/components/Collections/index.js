@@ -20,7 +20,8 @@ const styles = theme => ({
     textAlign: 'center'
   },
   gridContainer: {
-    margin: 'auto'
+    margin: '20px auto',
+    width: '90vw'
   }
 })
 class Collections extends React.Component {
@@ -46,7 +47,7 @@ class Collections extends React.Component {
           </Grid>
         }
         {collectionListData.length !== 0 &&
-          <Grid container alignContent='center' justify='flex-start' className={this.props.classes.gridContainer}>
+          <Grid container justify='flex-start' className={this.props.classes.gridContainer}>
             {collectionListData.map(item =>
               <Grid item key={shortid.generate()}>
                 <CollectionListItem {...item} dispatch={this.props.dispatch}/>

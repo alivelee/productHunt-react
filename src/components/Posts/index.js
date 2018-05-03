@@ -18,7 +18,8 @@ const styles = theme => ({
     textAlign: 'center'
   },
   gridContainer: {
-    margin: 'auto'
+    margin: '20px auto',
+    width: '90vw'
   }
 })
 
@@ -43,7 +44,7 @@ class Posts extends React.Component {
           </Grid>
         }
         {postListData.length !== 0 &&
-          <Grid container alignContent='center' justify='center'>
+          <Grid container justify='flex-start' className={this.props.classes.gridContainer}>
             {postListData.map(item =>
               <Grid item key={shortid.generate()}>
                 <PostListItem {...item} dispatch={this.props.dispatch}/>
