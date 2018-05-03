@@ -10,7 +10,7 @@ class TopicListItem extends React.Component {
   }
   render () {
     return (
-      <ListItem divider button onClick={ () => this.topicDetail(this.props.id)}>
+      <ListItem button onClick={ () => this.topicDetail(this.props.id)}>
         <ListItemText
           primary={this.props.name}
           secondary={this.props.description}
