@@ -14,7 +14,7 @@ export const getCollectionsDetailRequest = (payload) => ({
 
 export function * getCollectionsAction (action) {
   try {
-    const collectionsResponse = yield call(getFeaturedCollection, action.payload, action.header)
+    const collectionsResponse = yield call(getFeaturedCollection, action.payload)
     yield put({
       type: actionTypes.GET_COLLECTIONS_SUCCESS,
       payload: collectionsResponse
@@ -26,7 +26,7 @@ export function * getCollectionsAction (action) {
 
 export function * getCollectionDetailAction (action) {
   try {
-    const collectionsResponse = yield call(getCollectionDetail, action.payload.collectionId, action.header)
+    const collectionsResponse = yield call(getCollectionDetail, action.payload.collectionId)
     yield put({
       type: actionTypes.GET_COLLECTIONS_SUCCESS,
       payload: collectionsResponse

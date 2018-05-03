@@ -1,13 +1,13 @@
 import * as actionTypes from '../types'
 const initialState = {
-  collections: []
+  collectionListData: []
 }
 
 const getColllectionRequest = (state, action) => {
   const { collections } = action.payload
   return {
     ...state,
-    collections
+    collectionListData: collections
   }
 }
 const getCollectionDetailRequest = (state, action) => {

@@ -86,17 +86,6 @@ class App extends Component {
               onClick={this.toggleDrawer('left', false)}
               onKeyDown={this.toggleDrawer('left', false)}
             >
-              {/* <ul>
-            <li>
-              <Link to='/collection'>Collections</Link>
-            </li>
-            <li>
-              <Link to='/'>Posts</Link>
-            </li>
-            <li>
-              <Link to='/topic'>Topics</Link>
-            </li>
-          </ul> */}
               <LeftNavigation />
             </div>
           </Drawer>

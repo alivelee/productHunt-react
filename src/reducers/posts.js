@@ -1,12 +1,12 @@
 import * as actionTypes from '../types'
 const initialState = {
-  posts: []
+  postListData: []
 }
 
 const getPostRequest = (state, action) => {
   return {
     ...state,
-    posts: action.payload
+    postListData: action.payload.posts
   }
 }
 const posts = (state = initialState, action) => {

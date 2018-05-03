@@ -9,7 +9,7 @@ export const getPostsRequest = (payload) => ({
 
 export function * getPostsAction (action) {
   try {
-    const postsResponse = yield call(getPosts, action.payload, action.header)
+    const postsResponse = yield call(getPosts, action.payload)
     yield put({
       type: actionTypes.GET_POSTS_SUCCESS,
       payload: postsResponse
