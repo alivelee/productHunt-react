@@ -1,6 +1,7 @@
 import * as actionTypes from '../types'
 const initialState = {
-  postListData: []
+  postListData: [],
+  postDetail: null
 }
 
 const getPostRequest = (state, action) => {
@@ -9,10 +10,18 @@ const getPostRequest = (state, action) => {
     postListData: action.payload.posts
   }
 }
+
+const getPostDetailequest = (state, action) => {
+  return {
+    ...state,
+    postDetail: action.payload.post
+  }
+}
 const posts = (state = initialState, action) => {
   switch (action.type) {
     case (actionTypes.GET_POSTS_SUCCESS): return getPostRequest(state, action)
-    default: 
+    case (actionTypes.GET_POST_DETAIL_SUCCESS): return getPostDetailequest(state, action)
+    default:
       return state
   }
 }

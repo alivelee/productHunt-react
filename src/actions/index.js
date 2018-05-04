@@ -18,7 +18,9 @@ import {
 
 import {
   getPostsRequest,
-  getPostsAction
+  getPostsAction,
+  getPostDetailAction,
+  getPostDetailRequest
 } from './posts'
 export {
   getTokenAction,
@@ -34,5 +36,7 @@ export {
   getPostsRequest,
   getPostsAction,
   getTopicDetailRequest,
-  getTopicDetailAction
+  getTopicDetailAction,
+  getPostDetailRequest,
+  getPostDetailAction
 }

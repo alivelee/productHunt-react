@@ -26,7 +26,7 @@ export function * getPostsAction (action) {
 
 export function * getPostDetailAction (action) {
   try {
-    const postDetailResponse = yield call(getPostDetail, action.payload)
+    const postDetailResponse = yield call(getPostDetail, action.payload.postId)
     yield put({
       type: actionTypes.GET_POST_DETAIL_SUCCESS,
       payload: postDetailResponse

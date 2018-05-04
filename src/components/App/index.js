@@ -18,6 +18,7 @@ import IconButton from 'material-ui/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import LoginComponent from '../../container/Login'
 import AuthRedirectComponent from '../../container/Auth'
+import PostItemDetail from '../../container/Posts/detail'
 import Posts from '../../container/Posts'
 import Collections from '../../container/Collections'
 import Topics from '../../container/Topics'
@@ -95,6 +96,7 @@ class App extends Component {
           <Route exact path='/topic' component={Topics} />
           <Route exact path='/topic/:topicId' component={TopicDetail} />
           <Route exact path='/login' component={LoginComponent} />
+          <Route exact path='/post/:postId' component={PostItemDetail} />
         </Fragment>
       </ConnectedRouter>
 

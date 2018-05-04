@@ -19,7 +19,7 @@ export async function getTechPosts (headers) {
   })
 }
 
-export async function getPostDetail (postId, headers) {
+export async function getPostDetail (postId) {
   return request(`/api/posts/${postId}`, {
     method: 'GET'
   })
