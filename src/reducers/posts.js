@@ -17,10 +17,18 @@ const getPostDetailequest = (state, action) => {
     postDetail: action.payload.post
   }
 }
+const clearPostCache = (state, action) => {
+  return {
+    ...state,
+    postDetail: null
+  }
+}
+
 const posts = (state = initialState, action) => {
   switch (action.type) {
     case (actionTypes.GET_POSTS_SUCCESS): return getPostRequest(state, action)
     case (actionTypes.GET_POST_DETAIL_SUCCESS): return getPostDetailequest(state, action)
+    case (actionTypes.CLEAR_POST_CACHE): return clearPostCache(state, action)
     default:
       return state
   }

@@ -4,6 +4,8 @@ import { withStyles } from 'material-ui/styles'
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card'
 import Button from 'material-ui/Button'
 import Typography from 'material-ui/Typography'
+import { push } from 'react-router-redux' 
+
 import * as actionTypes from '../../../types'
 const styles = {
   card: {
@@ -30,8 +32,11 @@ class TopicDetailListItem extends React.Component {
       type: actionTypes.CLEAR_TOPIC_DETAIL_CACHE
     })
   }
+  linkToDetail = (id) => {
+    this.props.dispatch(push(`/post/${id}`))
+  }
   render () {
-    const { classes, name, screenshot_url } = this.props
+    const { classes, name, screenshot_url, id } = this.props
     return (
       <React.Fragment>
         <Card className={classes.card}>
@@ -50,7 +55,7 @@ class TopicDetailListItem extends React.Component {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small" color="primary">
+            <Button size="small" color="primary" onClick={() => this.linkToDetail(id)}>
               Learn More
             </Button>
           </CardActions>

@@ -1,10 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
-import Card, { CardContent, CardMedia } from 'material-ui/Card'
+import * as actionTypes from '../../../types'
+import Card, { CardContent, CardMedia, CardActions } from 'material-ui/Card'
+import Button from 'material-ui/Button'
 import IconButton from 'material-ui/IconButton'
 import Typography from 'material-ui/Typography'
 import Favourite from '@material-ui/icons/Favorite'
+import { push } from 'react-router-redux' 
 
 const styles = theme => ({
   card: {
@@ -42,6 +45,10 @@ class RelativePostItem extends React.Component {
       }
     })
   }
+  linkToDetail = (id) => {
+    console.log(id)
+    this.props.dispatch(push(`/post/${id}`))
+  }
   render () {
     const { classes, name, user, tagline, theme, id, screenshot_url } = this.props
     return (
@@ -64,6 +71,9 @@ class RelativePostItem extends React.Component {
               <Typography variant="subheading" color="textSecondary">
                 {this.state.votes_count}
               </Typography>
+              <CardActions>
+          <Button size="small" onClick={ () => this.linkToDetail(id)}>Learn More</Button>
+        </CardActions>
             </div>
           </div>
           <CardMedia

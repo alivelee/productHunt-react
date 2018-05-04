@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react'
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Link,
+  Switch
 } from 'react-router-dom'
 import { ConnectedRouter } from 'react-router-redux'
 import { history } from '../../store'
@@ -90,13 +91,15 @@ class App extends Component {
               <LeftNavigation />
             </div>
           </Drawer>
-          <Route exact path='/callback' component={AuthRedirectComponent} />
-          <Route exact path='/' component={Posts} />
-          <Route exact path='/collection' component={Collections} />
-          <Route exact path='/topic' component={Topics} />
-          <Route exact path='/topic/:topicId' component={TopicDetail} />
-          <Route exact path='/login' component={LoginComponent} />
-          <Route exact path='/post/:postId' component={PostItemDetail} />
+          <Switch>
+            <Route exact path='/callback' component={AuthRedirectComponent} />
+            <Route exact path='/' component={Posts} />
+            <Route exact path='/collection' component={Collections} />
+            <Route exact path='/topic' component={Topics} />
+            <Route exact path='/topic/:topicId' component={TopicDetail} />
+            <Route exact path='/login' component={LoginComponent} />
+            <Route exact path='/post/:postId' component={PostItemDetail} />
+          </Switch>
         </Fragment>
       </ConnectedRouter>
 

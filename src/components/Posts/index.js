@@ -32,6 +32,7 @@ class Posts extends React.Component {
       }
     })
   }
+
   render () {
     const { postListData } = this.props.posts
     return (
