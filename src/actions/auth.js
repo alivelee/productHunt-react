@@ -31,10 +31,18 @@ export function * getTokenAction (action) {
 
 export function * getPublicTokenAction (action) {
   try {
+    yield put({
+      type: actionTypes.CHANGE_LOADING,
+      payload: true
+    })
     const tokenResponse = yield call(getToken, action.payload)
     yield put({
       type: actionTypes.GET_PUBLIC_TOKEN_SUCCESS,
       payload: tokenResponse
+    })
+    yield put({
+      type: actionTypes.CHANGE_LOADING,
+      payload: false
     })
   } catch (e) {
     console.log(e)

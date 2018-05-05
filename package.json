@@ -37,10 +37,6 @@
     "eject": "react-scripts eject"
   },
   "proxy": {
-    "/oauth/token": {
-      "target": "https://api.producthunt.com/v1",
-      "changeOrigin": true
-    },
     "/api": {
       "target": "https://api.producthunt.com/v1",
       "changeOrigin": true,

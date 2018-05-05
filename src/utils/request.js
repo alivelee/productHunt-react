@@ -45,7 +45,7 @@ export default function request (url, options) {
   if (accessToken) {
     newOptions = {
       headers: {
-        Authorization: `${getCookie('tokenType')} ${getCookie('publicAccessToken')}`
+        Authorization: `${getCookie('tokenType')} ${getCookie('accessToken')}`
       }
     }
   } else {

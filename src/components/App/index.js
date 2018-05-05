@@ -59,6 +59,9 @@ class App extends Component {
       [side]: open,
     });
   };
+  linkToLogin = () => {
+    
+  }
   render () {
     const { classes } = this.props
     return (
@@ -73,7 +76,7 @@ class App extends Component {
                 <Typography variant="headline" color="inherit" className={classes.flex}>
                   productHunt-React
                 </Typography>
-                <Button color="inherit">Login</Button>
+                <Button color="inherit" onClick={this.linkToLogin}>Login</Button>
               </Toolbar>
             </AppBar>
           </div>
