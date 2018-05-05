@@ -3,7 +3,7 @@ import { setCookie, getCookie } from '../utils/cookie'
 const initialState = {
   isPublicLogin: !!getCookie('accessToken'),
   isPrivatgeLogin: !!getCookie('accessToken'),
-  accessToken: null
+  accessToken: getCookie('accessToken')
 }
 
 const changeLoading = (state, action) => {
