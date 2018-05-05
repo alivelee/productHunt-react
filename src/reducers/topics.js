@@ -1,7 +1,8 @@
 import * as actionType from '../types'
 const initialState = {
   topicsData: [],
-  topicDetailData: []
+  topicDetailData: [],
+  loading: false
 }
 
 const getTopicRequest = (state, action) => {
@@ -24,11 +25,19 @@ const clearTopicDetailCache = (state, action) => {
     topicDetailData: []
   }
 }
+
+const changeLoading = (state, action) => {
+  return {
+    ...state,
+    loading: action.payload
+  }
+}
 const topics = (state = initialState, action) => {
   switch (action.type) {
     case (actionType.GET_TOPICS_SUCCESS): return getTopicRequest(state, action)
     case (actionType.GET_TOPIC_DETAIL_SUCCESS): return getTopicDetailRequest(state, action)
     case (actionType.CLEAR_TOPIC_DETAIL_CACHE): return clearTopicDetailCache(state, action)
+    case (actionType.CHANGE_LOADING_TOPIC): return changeLoading(state, action)
     default:
       return state
   }

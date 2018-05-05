@@ -17,10 +17,18 @@ export const getTopicDetailRequest = (payload) => ({
 
 export function * getTopicAction (action) {
   try {
+    yield put({
+      type: actionTypes.CHANGE_LOADING_TOPIC,
+      payload: true
+    })
     const topicsResponse = yield call(getTopics, action.payload)
     yield put({
       type: actionTypes.GET_TOPICS_SUCCESS,
       payload: topicsResponse
+    })
+    yield put({
+      type: actionTypes.CHANGE_LOADING_TOPIC,
+      payload: false
     })
   } catch (e) {
     console.log(e)
