@@ -26,10 +26,18 @@ export function * getCollectionsAction (action) {
 
 export function * getCollectionDetailAction (action) {
   try {
+    yield put({
+      type: actionTypes.CHANGE_LOADING_COLLECTION,
+      payload: true
+    })
     const collectionsResponse = yield call(getCollectionDetail, action.payload.collectionId)
     yield put({
-      type: actionTypes.GET_COLLECTIONS_SUCCESS,
+      type: actionTypes.GET_COLLECTION_DETAIL_SUCCESS,
       payload: collectionsResponse
+    })
+    yield put({
+      type: actionTypes.CHANGE_LOADING_COLLECTION,
+      payload: false
     })
   } catch (error) {
     console.log(error)

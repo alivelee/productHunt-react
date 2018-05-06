@@ -8,7 +8,8 @@ import { getTokenAction,
   getPostsAction,
   getTopicAction,
   getTopicDetailAction,
-  getPostDetailAction
+  getPostDetailAction,
+  getCollectionDetailAction
 } from '../actions'
 
 function * mySaga () {
@@ -20,6 +21,7 @@ function * mySaga () {
   yield takeLatest(actionTypes.GET_TOPICS_REQUEST, getTopicAction)
   yield takeLatest(actionTypes.GET_TOPIC_DETAIL_REQUEST, getTopicDetailAction)
   yield takeLatest(actionTypes.GET_POST_DETAIL_REQUEST, getPostDetailAction)
+  yield takeLatest(actionTypes.GET_COLLECTION_DETAIL_REQUEST, getCollectionDetailAction)
 }
 
 export default mySaga

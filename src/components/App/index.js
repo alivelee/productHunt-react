@@ -5,7 +5,7 @@ import {
   Link,
   Switch
 } from 'react-router-dom'
-import { ConnectedRouter } from 'react-router-redux'
+import { ConnectedRouter, push } from 'react-router-redux'
 import { history } from '../../store'
 import { withStyles } from 'material-ui/styles'
 import Drawer from 'material-ui/Drawer'
@@ -20,6 +20,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import LoginComponent from '../../container/Login'
 import AuthRedirectComponent from '../../container/Auth'
 import PostItemDetail from '../../container/Posts/detail'
+import CollectionDetail from '../../container/Collections/detail'
 import Posts from '../../container/Posts'
 import Collections from '../../container/Collections'
 import Topics from '../../container/Topics'
@@ -102,6 +103,7 @@ class App extends Component {
             <Route exact path='/topic/:topicId' component={TopicDetail} />
             <Route exact path='/login' component={LoginComponent} />
             <Route exact path='/post/:postId' component={PostItemDetail} />
+            <Route exact path='/collection/:collectionId' component={CollectionDetail} />
           </Switch>
         </Fragment>
       </ConnectedRouter>

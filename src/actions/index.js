@@ -6,7 +6,9 @@ import { getTokenAction,
 import { getUserInfoAction, getUserInfoRequest } from './user'
 import {
   getCollectionsAction,
-  getCollectionsRequest
+  getCollectionsRequest,
+  getCollectionsDetailRequest,
+  getCollectionDetailAction
 } from './collection'
 
 import {
@@ -38,5 +40,7 @@ export {
   getTopicDetailRequest,
   getTopicDetailAction,
   getPostDetailRequest,
-  getPostDetailAction
+  getPostDetailAction,
+  getCollectionDetailAction,
+  getCollectionsDetailRequest
 }
