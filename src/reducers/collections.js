@@ -1,6 +1,7 @@
 import * as actionTypes from '../types'
 const initialState = {
-  collectionListData: []
+  collectionListData: [],
+  collectionDetail: null
 }
 
 const getColllectionRequest = (state, action) => {
