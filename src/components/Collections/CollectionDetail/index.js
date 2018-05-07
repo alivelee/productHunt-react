@@ -80,6 +80,7 @@ class CollectionDetail extends React.Component {
                   <PostList
                     key={shortid.generate()}
                     {...item}
+                    dispatch={this.props.dispatch}
                   />)}
               </List>
             </Card>
