@@ -8,20 +8,18 @@ import {
   Link
 } from 'react-router-dom'
 const styles = {
-  list: {
-    width: 250
-  },
-  fullList: {
-    width: 'auto'
+  link: {
+    textDecoration: 'none'
   }
 }
 
 class LeftNavigation extends React.Component {
   render () {
+    const { classes } = this.props
     return (
       <React.Fragment>
         <List>
-          <Link to='/collection'>
+          <Link to='/collection' className={classes.link}>
             <ListItem button>
               <ListItemIcon>
                 <Description />
@@ -29,7 +27,7 @@ class LeftNavigation extends React.Component {
               <ListItemText primary="Collection" />
             </ListItem>
           </Link>
-          <Link to='/topic'>
+          <Link to='/topic' className={classes.link}>
             <ListItem button>
               <ListItemIcon>
                 <Book />
@@ -37,12 +35,12 @@ class LeftNavigation extends React.Component {
               <ListItemText primary="Topic" />
             </ListItem>
           </Link>
-          <Link to='/'>
+          <Link to='/' className={classes.link}>
             <ListItem button>
               <ListItemIcon>
                 <Chat />
               </ListItemIcon>
-              <ListItemText primary="Posts"/>
+              <ListItemText primary="Posts" />
             </ListItem>
           </Link>
         </List>

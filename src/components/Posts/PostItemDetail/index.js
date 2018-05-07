@@ -1,5 +1,6 @@
 import React from 'react'
 import * as actionTypes from '../../../types'
+import { replace } from 'react-router-redux'
 import Grid from 'material-ui/Grid'
 import { withStyles } from 'material-ui/styles'
 import Paper from 'material-ui/Paper'
@@ -7,6 +8,7 @@ import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 import Chip from 'material-ui/Chip'
 import Loading from '../../Loading'
+import Button from 'material-ui/Button'
 import RelativePostItem from './relativePostItem'
 import shortid from 'shortid'
 const styles = theme => ({
@@ -21,7 +23,8 @@ const styles = theme => ({
     marginTop: '20px'
   },
   title: {
-    marginBottom: '20px'
+    marginBottom: '20px',
+    marginTop: '20px'
   },
   media: {
     height: 0,
@@ -31,6 +34,10 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit * 2,
     marginRight: theme.spacing.unit * 1.2
+  },
+  link: {
+    textDecoration: 'none',
+    color: 'rgba(0, 0, 0, 0.87)'
   }
 })
 
@@ -65,15 +72,14 @@ class PostItemDetail extends React.Component {
       })
     }
   }
-
   render () {
     const { classes, posts: { postDetail } } = this.props
     // console.log(postDetail.screenshot_url['800px'])
     return (
       <React.Fragment>
         {!postDetail && <Loading />}
-        {postDetail && <Grid container spacing={24} justify="center" className={classes.wrapper}>
-          <Grid item xs={12} sm={7} md={7}>
+        {postDetail && <Grid container justify="center" className={classes.wrapper} spacing={40}>
+          <Grid item xs={12} sm={12} md={7}>
             <Card className={classes.card}>
               <CardMedia
                 className={classes.media}
@@ -84,14 +90,19 @@ class PostItemDetail extends React.Component {
                 <Typography gutterBottom variant="headline" component="h2">
                   {postDetail.name}
                 </Typography>
-                {postDetail.topics.map(item => <Chip label={item.name} className={classes.chip} key={shortid.generate()}/>)}               
-                <Typography component="p">
+                {postDetail.topics.map(item => <Chip label={item.name} className={classes.chip} key={shortid.generate()}/>)}
+                <Typography component="p" gutterBottom>
                   {postDetail.description}
                 </Typography>
+                <Button variant="raised" className={classes.button} size="small" >
+                  <Typography component="p" >
+                    <a href={postDetail.redirect_url} className={classes.link}>link to site</a>
+                  </Typography>
+                </Button>
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={4} md={4}>
+          <Grid item xs={12} sm={12} md={4}>
             <Typography variant="title" className={classes.title}>
               Relative Posts
             </Typography>

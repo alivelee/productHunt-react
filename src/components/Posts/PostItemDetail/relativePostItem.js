@@ -17,7 +17,7 @@ const styles = theme => ({
   details: {
     display: 'flex',
     flexDirection: 'column',
-    flex: '2 0 240px'
+    flex: '2 0 200px'
   },
   content: {
     flex: '1 0 auto'
