@@ -1,38 +1,46 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import { LOGOUT } from '../../types'
 import { PRODUCT_HUNT_API_KEY } from '../../constants/clientId'
+import { withStyles } from 'material-ui/styles'
+import Button from 'material-ui/Button'
+import Grid from 'material-ui/Grid'
 
 const authUrl = `https://api.producthunt.com/v1/oauth/authorize?client_id=${PRODUCT_HUNT_API_KEY}&redirect_uri=https://localhost:3000/callback&response_type=code&scope=public+private`
-
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit
+  },
+  input: {
+    display: 'none'
+  },
+  login: {
+    color: '#fff',
+    textDecoration: 'none'
+  },
+  container: {
+    height: '90vh'
+  }
+})
 class Menu extends React.Component {
   componentDidMount () {
     // console.log(this.props)
   }
   render () {
-    const { isLogin, dispatch } = this.props
+    const { isLogin, dispatch, classes } = this.props
     // console.log(isLogin)
     return (
-      isLogin ? (
-        <p>
-          Welcome!
-          <button
-            onClick={() => {
-              dispatch({
-                type: LOGOUT
-              })
-            }}
-          >
-            Sign out
-          </button>
-        </p>
-      ) : (
-        <React.Fragment>
-          <a href={authUrl}>Login</a>
-        </React.Fragment>
-      )
+      <React.Fragment>
+        <Grid container justify="center" alignItems="center" className={classes.container}>
+          <Grid item>
+            <Button variant="raised" color="primary" className={classes.button}>
+              <a href={authUrl} className={classes.login}>Login to get token</a>
+            </Button>
+          </Grid>
+        </Grid>
+
+      </React.Fragment>
     )
   }
 }
 
-export default withRouter(Menu)
+export default withStyles(styles)(withRouter(Menu))

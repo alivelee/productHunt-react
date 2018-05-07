@@ -2,7 +2,7 @@ import { stringify } from 'qs'
 import request from '../../utils/request'
 
 export async function getPosts (params) {
-  console.log('params', params)
+  console.log('posts', params)
   if (!params) {
     return request(`/api/posts/all`, {
       method: 'GET'

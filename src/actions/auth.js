@@ -15,6 +15,7 @@ export const getPublicTokenRequest = (payload) => ({
 export function * getTokenAction (action) {
   try {
     const tokenResponse = yield call(getToken, action.payload)
+    console.log(tokenResponse)
     yield put({
       type: actionTypes.GET_TOKEN_SUCCESS,
       payload: tokenResponse

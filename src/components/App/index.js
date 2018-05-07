@@ -61,7 +61,7 @@ class App extends Component {
     });
   };
   linkToLogin = () => {
-    
+    this.props.dispatch(push('/login'))
   }
   render () {
     const { classes } = this.props

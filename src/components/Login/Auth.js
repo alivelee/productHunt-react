@@ -1,6 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import { GET_TOKEN } from "../../types";
+import * as actionTypes from '../../types'
 import { PRODUCT_HUNT_API_KEY, PRODUCT_HUNT_API_SECRET } from '../../constants/clientId'
 
 class AuthRedirectComponent extends React.Component {
@@ -8,7 +8,7 @@ class AuthRedirectComponent extends React.Component {
     const params = new URLSearchParams(this.props.location.search)
     const code = params.get('code')
     this.props.dispatch({
-      type: GET_TOKEN,
+      type: actionTypes.GET_TOKEN,
       payload: {
         client_id: PRODUCT_HUNT_API_KEY,
         client_secret: PRODUCT_HUNT_API_SECRET,
