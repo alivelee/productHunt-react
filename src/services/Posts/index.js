@@ -1,8 +1,8 @@
 import { stringify } from 'qs'
 import request from '../../utils/request'
 
-export async function getPosts (params, headers) {
-  console.log('params', params, headers)
+export async function getPosts (params) {
+  console.log('params', params)
   if (!params) {
     return request(`/api/posts/all`, {
       method: 'GET'
@@ -13,7 +13,7 @@ export async function getPosts (params, headers) {
   })
 }
 
-export async function getTechPosts (headers) {
+export async function getTechPosts () {
   return request('/api/me/feed', {
     method: 'GET'
   })

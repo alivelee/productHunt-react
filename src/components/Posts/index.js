@@ -6,7 +6,7 @@ import Grid from 'material-ui/Grid'
 import { withStyles } from 'material-ui/styles'
 import shortid from 'shortid'
 import PostListItem from './PostsItem'
-
+import dayjs from 'dayjs';
 const styles = theme => ({
   root: {
     width: '100%',
@@ -26,6 +26,9 @@ const styles = theme => ({
 
 class Posts extends React.Component {
   componentDidMount () {
+    this.getAllPost()
+  }
+  getAllPost = () => {
     this.props.dispatch({
       type: actionTypes.GET_POSTS_REQUEST,
       payload: {
@@ -33,19 +36,38 @@ class Posts extends React.Component {
       }
     })
   }
-
+  getMostUpVotedPost = () => {
+    this.props.dispatch({
+      type: actionTypes.GET_POSTS_REQUEST,
+      payload: {
+        'sort_by': 'votes_count',
+        'order': 'desc',
+        'search[featured_month]': dayjs().month() + 1,
+        'search[featured_year]': dayjs().year()
+      }
+    })
+  }
+  getRecentlyCreatePost = () => {
+    this.props.dispatch({
+      type: actionTypes.GET_POSTS_REQUEST,
+      payload: {
+        'sort_by': 'created_at',
+        'order': 'asc'
+      }
+    })
+  }
   render () {
-    const { postListData } = this.props.posts
+    const { postListData, loading } = this.props.posts
     return (
       <React.Fragment>
-        {postListData.length === 0 &&
+        {loading &&
           <Grid container justify='center' alignContent='center'>
-            <Grid item xs={12} className={this.props.classes.loadingItem}>
+            <Grid item xs={12} sm={9} md={9} className={this.props.classes.loadingItem}>
               <CircularProgress className={this.props.classes.progress} size={50} />
             </Grid>
           </Grid>
         }
-        {postListData.length !== 0 &&
+        {!loading &&
           <Grid container justify='flex-start' className={this.props.classes.gridContainer}>
             <Grid item xs={12} sm={9} md={9}>
               <Grid container>
@@ -59,10 +81,13 @@ class Posts extends React.Component {
             <Grid item xs={12} sm={2} md={2}>
               <List component="nav">
                 <ListItem button onClick={this.showAllTopicRequest}>
-                  <ListItemText primary="Show All Posts" />
+                  <ListItemText primary="All Posts" onClick={this.getAllPost}/>
                 </ListItem>
                 <ListItem button>
-                  <ListItemText primary="Get the Trending Posts" onClick={this.showTrendingTopicRequest}/>
+                  <ListItemText primary="Most Upvoted" onClick={this.getMostUpVotedPost}/>
+                </ListItem>
+                <ListItem button>
+                  <ListItemText primary="Recently Created" onClick={this.getRecentlyCreatePost}/>
                 </ListItem>
               </List>
             </Grid>

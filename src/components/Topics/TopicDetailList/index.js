@@ -28,7 +28,6 @@ class TopicDetail extends React.Component {
   }
   render () {
     const { topicDetailData } = this.props.topics
-    console.log('topicDetailData', topicDetailData)
     return (
       <React.Fragment>
         {topicDetailData.length === 0 &&

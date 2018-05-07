@@ -52,6 +52,24 @@ class Topics extends React.Component {
       }
     })
   }
+  showRecentlyUpdateRequest = () => {
+    this.props.dispatch({
+      type: actionTypes.GET_TOPICS_REQUEST,
+      payload: {
+        'sort_by': 'updated_at',
+        'order': 'desc'
+      }
+    })
+  }
+  showRecentlyCreatedRequest = () => {
+    this.props.dispatch({
+      type: actionTypes.GET_TOPICS_REQUEST,
+      payload: {
+        'sort_by': 'created_at',
+        'order': 'asc'
+      }
+    })
+  }
   render () {
     const { classes } = this.props
     const { topicsData, loading } = this.props.topics
@@ -93,6 +111,12 @@ class Topics extends React.Component {
               </ListItem>
               <ListItem button>
                 <ListItemText primary="Get the Trending Topic" onClick={this.showTrendingTopicRequest}/>
+              </ListItem>
+              <ListItem button>
+                <ListItemText primary="Recently Updated" onClick={this.showRecentlyUpdateRequest}/>
+              </ListItem>
+              <ListItem button>
+                <ListItemText primary="Recently Created" onClick={this.showRecentlyCreatedRequest}/>
               </ListItem>
             </List>
           </Grid>

@@ -40,7 +40,7 @@ class LeftNavigation extends React.Component {
               <ListItemIcon>
                 <Chat />
               </ListItemIcon>
-              <ListItemText primary="Posts" Z/>
+              <ListItemText primary="Posts" />
             </ListItem>
           </Link>
         </List>

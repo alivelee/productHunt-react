@@ -14,10 +14,18 @@ export const getPostDetailRequest = (payload) => ({
 
 export function * getPostsAction (action) {
   try {
+    yield put({
+      type: actionTypes.CHANGE_LOADING_POST,
+      payload: true
+    })
     const postsResponse = yield call(getPosts, action.payload)
     yield put({
       type: actionTypes.GET_POSTS_SUCCESS,
       payload: postsResponse
+    })
+    yield put({
+      type: actionTypes.CHANGE_LOADING_POST,
+      payload: false
     })
   } catch (error) {
     console.log(error)
