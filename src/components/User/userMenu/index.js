@@ -6,10 +6,11 @@ import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
 import IconButton from 'material-ui/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
-import AccountCircle from '@material-ui/icons/AccountCircle'
 import Switch from 'material-ui/Switch'
 import { FormControlLabel, FormGroup } from 'material-ui/Form'
 import Menu, { MenuItem } from 'material-ui/Menu'
+import { push } from 'react-router-redux'
+import Avatar from 'material-ui/Avatar'
 
 const styles = {
   root: {
@@ -26,11 +27,13 @@ const styles = {
 
 class UserMenu extends React.Component {
   state = {
-    open: false
+    open: false,
+    anchorEl:  null
   }
-  handleMenu = () => {
+  handleMenu = (e) => {
     this.setState({
-      open: true
+      open: true,
+      anchorEl: e.currentTarget
     })
   }
   handleClose = () => {
@@ -38,31 +41,23 @@ class UserMenu extends React.Component {
       open: false
     })
   }
+  linkToUserPage = (id) => {
+    this.props.dispatch(push(`/user/${id}`))
+    this.handleClose()
+  }
   render () {
-    const { open } = this.state
+    const { open, anchorEl } = this.state
+    const { user : { userInfo } } = this.props
     return (
       <React.Fragment>
-        <IconButton
-          onClick={this.handleMenu}
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
+        <Avatar alt="Remy Sharp" src={userInfo.image_url['40px']} onClick={this.handleMenu} />
         <Menu
+          anchorEl={anchorEl}
           id="menu-appbar"
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
           open={open}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-          <MenuItem onClick={this.handleClose}>My account</MenuItem>
+          <MenuItem onClick={ () => this.linkToUserPage(userInfo.id)}>Profile</MenuItem>
         </Menu>
       </React.Fragment>
     )

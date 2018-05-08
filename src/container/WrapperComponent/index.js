@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { GET_PUBLIC_TOKEN } from '../../types'
+import { GET_PUBLIC_TOKEN, GET_USERINFO_REQUEST } from '../../types'
 import { PRODUCT_HUNT_API_KEY, PRODUCT_HUNT_API_SECRET } from '../../constants/clientId'
 import Loading from '../../components/Loading'
 const mapStateToProps = ({ auth }) => ({ auth })
@@ -15,6 +15,9 @@ const WrapperComponent = (WrappedComponent) => {
           client_secret: PRODUCT_HUNT_API_SECRET,
           grant_type: 'client_credentials'
         }
+      })
+      this.props.auth.isPrivatgeLogin && this.props.dispatch({
+        type: GET_USERINFO_REQUEST
       })
       console.log('fetched First')
     }

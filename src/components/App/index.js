@@ -25,8 +25,10 @@ import Posts from '../../container/Posts'
 import Collections from '../../container/Collections'
 import Topics from '../../container/Topics'
 import TopicDetail from '../../container/Topics/detail'
+import UserDetail from '../../container/User/detail'
 import LeftNavigation from '../Navigation/left'
 import UserMenu from '../User/userMenu'
+
 const styles = {
   root: {
     flexGrow: 1
@@ -80,7 +82,7 @@ class App extends Component {
                 </Typography>
                 {!user.userInfo && <Button color="inherit" onClick={this.linkToLogin}>Login</Button>}
                 
-                {user.userInfo && <UserMenu />}
+                {user.userInfo && <UserMenu dispatch={this.props.dispatch} user={this.props.user}/>}
               </Toolbar>
             </AppBar>
           </div>
@@ -107,6 +109,7 @@ class App extends Component {
             <Route exact path='/login' component={LoginComponent} />
             <Route exact path='/post/:postId' component={PostItemDetail} />
             <Route exact path='/collection/:collectionId' component={CollectionDetail} />
+            <Route exact path='/user/:userId' component={UserDetail} />
           </Switch>
         </Fragment>
       </ConnectedRouter>

@@ -3,7 +3,11 @@ import { getTokenAction,
   getPublicTokenAction,
   getPublicTokenRequest
 } from './auth'
-import { getUserInfoAction, getUserInfoRequest } from './user'
+import { getUserInfoAction,
+  getUserInfoRequest,
+  getUserDetailAction,
+  getUserDetailRequest
+} from './user'
 import {
   getCollectionsAction,
   getCollectionsRequest,
@@ -42,5 +46,7 @@ export {
   getPostDetailRequest,
   getPostDetailAction,
   getCollectionDetailAction,
-  getCollectionsDetailRequest
+  getCollectionsDetailRequest,
+  getUserDetailAction,
+  getUserDetailRequest
 }
