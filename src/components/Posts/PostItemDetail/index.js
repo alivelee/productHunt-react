@@ -11,6 +11,7 @@ import Loading from '../../Loading'
 import Button from 'material-ui/Button'
 import RelativePostItem from './relativePostItem'
 import shortid from 'shortid'
+import { push } from 'react-router-redux'
 const styles = theme => ({
   root: {
     flexGrow: 1
@@ -72,6 +73,9 @@ class PostItemDetail extends React.Component {
       })
     }
   }
+  linkToTopic = (id) => {
+    this.props.dispatch(push(`/topic/${id}`))
+  }
   render () {
     const { classes, posts: { postDetail } } = this.props
     // console.log(postDetail.screenshot_url['800px'])
@@ -90,7 +94,7 @@ class PostItemDetail extends React.Component {
                 <Typography gutterBottom variant="headline" component="h2">
                   {postDetail.name}
                 </Typography>
-                {postDetail.topics.map(item => <Chip label={item.name} className={classes.chip} key={shortid.generate()}/>)}
+                {postDetail.topics.map(item => <Chip label={item.name} className={classes.chip} key={shortid.generate()} onClick={ () => this.linkToTopic(item.id)}/>)}
                 <Typography component="p" gutterBottom>
                   {postDetail.description}
                 </Typography>
