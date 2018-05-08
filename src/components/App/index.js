@@ -26,6 +26,7 @@ import Collections from '../../container/Collections'
 import Topics from '../../container/Topics'
 import TopicDetail from '../../container/Topics/detail'
 import LeftNavigation from '../Navigation/left'
+import UserMenu from '../User/userMenu'
 const styles = {
   root: {
     flexGrow: 1
@@ -64,7 +65,7 @@ class App extends Component {
     this.props.dispatch(push('/login'))
   }
   render () {
-    const { classes } = this.props
+    const { classes, user } = this.props
     return (
       <ConnectedRouter history={history}>
         <Fragment>
@@ -77,7 +78,9 @@ class App extends Component {
                 <Typography variant="headline" color="inherit" className={classes.flex}>
                   productHunt-React
                 </Typography>
-                <Button color="inherit" onClick={this.linkToLogin}>Login</Button>
+                {!user.userInfo && <Button color="inherit" onClick={this.linkToLogin}>Login</Button>}
+                
+                {user.userInfo && <UserMenu />}
               </Toolbar>
             </AppBar>
           </div>
