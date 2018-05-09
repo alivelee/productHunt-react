@@ -9,6 +9,7 @@ import Paper from 'material-ui/Paper'
 import Grid from 'material-ui/Grid'
 import * as actionTypes from '../../types'
 import TopicListItem from './TopicListItem'
+import LoadMore from '../LoadMore'
 const paperStyle = {
   height: 'auto',
   textAlign: 'center',
@@ -32,6 +33,10 @@ const styles = theme => ({
 })
 
 class Topics extends React.Component {
+  state = {
+    initialPage: 1,
+    condition: null
+  }
   componentDidMount () {
    this.showTrendingTopicRequest()
   }
@@ -42,11 +47,22 @@ class Topics extends React.Component {
         'per_page': 20
       }
     })
+    this.setState({
+      condition: {
+        'per_page': 20
+      }
+    })
   }
   showTrendingTopicRequest = () => {
     this.props.dispatch({
       type: actionTypes.GET_TOPICS_REQUEST,
       payload: {
+        'per_page': 20,
+        'search[trending]': true
+      }
+    })
+    this.setState({
+      condition: {
         'per_page': 20,
         'search[trending]': true
       }
@@ -60,6 +76,12 @@ class Topics extends React.Component {
         'order': 'desc'
       }
     })
+    this.setState({
+      condition: {
+        'sort_by': 'updated_at',
+        'order': 'desc'
+      }
+    })
   }
   showRecentlyCreatedRequest = () => {
     this.props.dispatch({
@@ -69,10 +91,28 @@ class Topics extends React.Component {
         'order': 'asc'
       }
     })
+    this.setState({
+      condition: {
+        'sort_by': 'created_at',
+        'order': 'asc'
+      }
+    })
+  }
+  getMore = () => {
+    this.setState({
+      initialPage: this.state.initialPage + 1
+    })
+    this.props.dispatch({
+      type: actionTypes.GET_MORE_TOPIC_REQUEST,
+      payload: {
+        ...this.state.condition,
+        page: this.state.initialPage + 1
+      }
+    })
   }
   render () {
     const { classes } = this.props
-    const { topicsData, loading } = this.props.topics
+    const { topicsData, loading, moreLoading } = this.props.topics
     return (
       <React.Fragment>
         <Grid container justify='space-around' className={classes.wrapper}>
@@ -85,24 +125,28 @@ class Topics extends React.Component {
               </Grid>
             }
             {!loading &&
-          <Grid container direction="column">
-            <Paper style={paperStyle} elevation={1} >
-              <Grid item className={this.props.classes.root}>
-                <List>
-                  {topicsData.map(item =>
-                    <TopicListItem
-                      key={shortid.generate()}
-                      id={item.id}
-                      name={item.name}
-                      description={item.description}
-                      dispatch={this.props.dispatch}
-                    />
-                  )
-                  }
-                </List>
+            <React.Fragment>
+              <Grid container direction="column">
+                <Paper style={paperStyle} elevation={1} >
+                  <Grid item className={this.props.classes.root}>
+                    <List>
+                      {topicsData.map(item =>
+                        <TopicListItem
+                          key={shortid.generate()}
+                          id={item.id}
+                          name={item.name}
+                          description={item.description}
+                          dispatch={this.props.dispatch}
+                        />
+                      )
+                      }
+                    </List>
+                  </Grid>
+                </Paper>
               </Grid>
-            </Paper>
-          </Grid>}
+              <LoadMore action={this.getMore} loading={moreLoading}/>
+            </React.Fragment>
+            }
           </Grid>
           <Grid item xs={12} sm={2} md={2}>
             <List component="nav">
@@ -121,7 +165,6 @@ class Topics extends React.Component {
             </List>
           </Grid>
         </Grid>
-
       </React.Fragment>
     )
   }

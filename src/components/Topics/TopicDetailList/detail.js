@@ -26,12 +26,12 @@ const styles = {
 }
 
 class TopicDetailListItem extends React.Component {
-  componentWillUnmount () {
-    console.log('fired')
-    this.props.dispatch({
-      type: actionTypes.CLEAR_TOPIC_DETAIL_CACHE
-    })
-  }
+  // componentWillUnmount () {
+  //   console.log('fired')
+  //   this.props.dispatch({
+  //     type: actionTypes.CLEAR_TOPIC_DETAIL_CACHE
+  //   })
+  // }
   linkToDetail = (id) => {
     this.props.dispatch(push(`/post/${id}`))
   }

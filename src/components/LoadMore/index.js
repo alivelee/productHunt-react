@@ -12,6 +12,7 @@ const styles = theme => ({
   },
   button: {
     textAlign: 'center',
+    marginTop: 20,
     marginBottom: 20,
     position: 'relative'
   },

@@ -5,6 +5,7 @@ import Grid from 'material-ui/Grid'
 import { withStyles } from 'material-ui/styles'
 import TopicDetailListItem from './detail'
 import shortid from 'shortid'
+import LoadMore from '../../LoadMore'
 const styles = theme => ({
   progress: {
     margin: theme.spacing.unit * 2
@@ -17,6 +18,9 @@ const styles = theme => ({
 })
 
 class TopicDetail extends React.Component {
+  state = {
+    initialPage: 2
+  }
   componentDidMount () {
     this.props.dispatch({
       type: actionType.GET_TOPIC_DETAIL_REQUEST,
@@ -26,8 +30,27 @@ class TopicDetail extends React.Component {
       }
     })
   }
+  componentWillUnmount () {
+    console.log('fired')
+    this.props.dispatch({
+      type: actionType.CLEAR_TOPIC_DETAIL_CACHE
+    })
+  }
+  getMore = () => {
+    this.setState({
+      initialPage: this.state.initialPage + 1
+    })
+    this.props.dispatch({
+      type: actionType.GET_MORE_TOPIC_DETAIL_REQUEST,
+      payload: {
+        'search[topic]': this.props.match.params.topicId,
+        'per_page': 20,
+        page: this.state.initialPage
+      }
+    })
+  }
   render () {
-    const { topicDetailData } = this.props.topics
+    const { topicDetailData, topicDetailLoading } = this.props.topics
     return (
       <React.Fragment>
         {topicDetailData.length === 0 &&
@@ -38,6 +61,7 @@ class TopicDetail extends React.Component {
           </Grid>
         }
         {topicDetailData.length !== 0 &&
+        <React.Fragment>
           <Grid container alignContent='center' justify='center'>
             {topicDetailData.map(item =>
               <Grid item key={shortid.generate()}>
@@ -45,6 +69,8 @@ class TopicDetail extends React.Component {
               </Grid>
             )}
           </Grid>
+          <LoadMore action={this.getMore} loading={topicDetailLoading}/>
+        </React.Fragment>
         }
       </React.Fragment>
     )

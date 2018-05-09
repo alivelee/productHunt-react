@@ -19,7 +19,11 @@ import {
   getTopicRequest,
   getTopicAction,
   getTopicDetailRequest,
-  getTopicDetailAction
+  getTopicDetailAction,
+  getMoreTopicRequest,
+  getMoreTopicAction,
+  getMoreTopicDetailRequest,
+  getMoreTopicDetailAction
 } from './topics'
 
 import {
@@ -56,5 +60,9 @@ export {
   voteForPostAction,
   voteForPostRequest,
   getMorePostsRequest,
-  getMorePostsAction
+  getMorePostsAction,
+  getMoreTopicRequest,
+  getMoreTopicAction,
+  getMoreTopicDetailRequest,
+  getMoreTopicDetailAction
 }
