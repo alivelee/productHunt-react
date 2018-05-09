@@ -9,8 +9,8 @@ import { push } from 'react-router-redux'
 import * as actionTypes from '../../../types'
 const styles = {
   card: {
-    width: '350px',
-    height: '350px',
+    width: 350,
+    height: 350,
     margin: '10px'
   },
   media: {
