@@ -7,7 +7,7 @@ import { CircularProgress } from 'material-ui/Progress'
 import CollectionListItem from './CollectionItem'
 import * as actionTypes from '../../types'
 import { withStyles } from 'material-ui/styles'
-
+import LoadMore from '../LoadMore'
 const styles = theme => ({
   root: {
     width: '100%',
@@ -25,6 +25,13 @@ const styles = theme => ({
   }
 })
 class Collections extends React.Component {
+  state = {
+    initialPage: 1,
+    condition: {
+      'search[featured]': true,
+      'per_page': 40
+    }
+  }
   componentDidMount () {
     this.getFeatureCollection()
   }
@@ -36,6 +43,13 @@ class Collections extends React.Component {
         'per_page': 40
       }
     })
+    this.setState({
+      condition: {
+        'search[featured]': true,
+        'per_page': 40
+      },
+      initialPage: 1,
+    })
   }
   getLatestCollection = () => {
     this.props.dispatch({
@@ -43,6 +57,12 @@ class Collections extends React.Component {
       payload: {
         'per_page': 40
       }
+    })
+    this.setState({
+      condition: {
+        'per_page': 40
+      },
+      initialPage: 1,
     })
   }
   getlatestCreateCollection = () => {
@@ -54,10 +74,30 @@ class Collections extends React.Component {
         'order': 'asc'
       }
     })
+    this.setState({
+      condition: {
+        'per_page': 40,
+        'sort_by': 'created_at',
+        'order': 'asc'
+      },
+      initialPage: 1,
+    })
+  }
+  getMore = () => {
+    this.setState({
+      initialPage: this.state.initialPage + 1
+    })
+    this.props.dispatch({
+      type: actionTypes.GET_MORE_COLLECTIONS_REQUEST,
+      payload: {
+        ...this.state.condition,
+        page: this.state.initialPage + 1
+      }
+    })
   }
   render () {
     console.log(this.props.collections)
-    const { collectionListData, loading } = this.props.collections
+    const { collectionListData, loading, moreLoading } = this.props.collections
     return (
       <React.Fragment>
         {loading &&
@@ -68,7 +108,8 @@ class Collections extends React.Component {
           </Grid>
         }
         {!loading &&
-          <Grid container justify='flex-start' className={this.props.classes.gridContainer}>
+          <React.Fragment>
+            <Grid container justify='flex-start' className={this.props.classes.gridContainer}>
             <Grid item xs={12} sm={9} md={9}>
               <Grid container>
                 {collectionListData.map(item =>
@@ -92,6 +133,8 @@ class Collections extends React.Component {
               </List>
             </Grid>
           </Grid>
+          <LoadMore loading={moreLoading} action={this.getMore}/>
+          </React.Fragment>
         }
       
       </React.Fragment>

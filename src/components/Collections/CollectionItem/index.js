@@ -11,7 +11,7 @@ import dayjs from 'dayjs'
 const styles = theme => ({
   card: {
     width: 415,
-    height: 300,
+    height: 250,
     margin: '10px'
   },
   actions: {

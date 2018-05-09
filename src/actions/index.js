@@ -12,7 +12,8 @@ import {
   getCollectionsAction,
   getCollectionsRequest,
   getCollectionsDetailRequest,
-  getCollectionDetailAction
+  getCollectionDetailAction,
+  getMoreCollectionsAction
 } from './collection'
 
 import {
@@ -64,5 +65,6 @@ export {
   getMoreTopicRequest,
   getMoreTopicAction,
   getMoreTopicDetailRequest,
-  getMoreTopicDetailAction
+  getMoreTopicDetailAction,
+  getMoreCollectionsAction
 }
