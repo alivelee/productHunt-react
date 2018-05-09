@@ -9,8 +9,8 @@ import { push } from 'react-router-redux'
 import * as actionTypes from '../../../types'
 const styles = {
   card: {
-    maxWidth: '350px',
-    maxHeight: '400px',
+    width: '350px',
+    height: '350px',
     margin: '10px'
   },
   media: {
@@ -26,17 +26,11 @@ const styles = {
 }
 
 class TopicDetailListItem extends React.Component {
-  // componentWillUnmount () {
-  //   console.log('fired')
-  //   this.props.dispatch({
-  //     type: actionTypes.CLEAR_TOPIC_DETAIL_CACHE
-  //   })
-  // }
   linkToDetail = (id) => {
     this.props.dispatch(push(`/post/${id}`))
   }
   render () {
-    const { classes, name, screenshot_url, id } = this.props
+    const { classes, name, screenshot_url, id, tagline } = this.props
     return (
       <React.Fragment>
         <Card className={classes.card}>
@@ -50,8 +44,7 @@ class TopicDetailListItem extends React.Component {
               {name}
             </Typography>
             <Typography component="p" >
-              Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-              across all continents except Antarctica
+              {tagline}
             </Typography>
           </CardContent>
           <CardActions>
