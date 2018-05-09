@@ -8,19 +8,18 @@ import { push } from 'react-router-redux'
 import * as actionTypes from '../../../types'
 const styles = {
   card: {
-    maxWidth: '350px',
-    maxHeight: '400px',
+    width: '350px',
+    height: '250px',
     margin: '10px'
   },
   media: {
     height: 0,
-    paddingTop: '56.25%' // 16:9
+    paddingTop: '35.25%' // 16:9
   },
   header: {
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     whiteSpace: 'nowrap'
-
   }
 }
 
@@ -40,12 +39,8 @@ class PostListItem extends React.Component {
             title="Contemplative Reptile"
           />
           <CardContent>
-            <Typography gutterBottom variant="headline" component="h2" className={classes.header}>
+            <Typography variant="headline" component="h2" className={classes.header}>
               {name}
-            </Typography>
-            <Typography component="p" >
-              Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-              across all continents except Antarctica
             </Typography>
           </CardContent>
           <CardActions>

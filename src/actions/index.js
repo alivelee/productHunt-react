@@ -26,7 +26,9 @@ import {
   getPostsRequest,
   getPostsAction,
   getPostDetailAction,
-  getPostDetailRequest
+  getPostDetailRequest,
+  voteForPostAction,
+  voteForPostRequest
 } from './posts'
 export {
   getTokenAction,
@@ -48,5 +50,7 @@ export {
   getCollectionDetailAction,
   getCollectionsDetailRequest,
   getUserDetailAction,
-  getUserDetailRequest
+  getUserDetailRequest,
+  voteForPostAction,
+  voteForPostRequest
 }

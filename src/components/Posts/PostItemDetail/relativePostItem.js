@@ -6,9 +6,8 @@ import Card, { CardContent, CardMedia, CardActions } from 'material-ui/Card'
 import Button from 'material-ui/Button'
 import IconButton from 'material-ui/IconButton'
 import Typography from 'material-ui/Typography'
-import Favourite from '@material-ui/icons/Favorite'
 import { push } from 'react-router-redux' 
-
+import Vote from '../../Vote'
 const styles = theme => ({
   card: {
     display: 'flex',
@@ -35,16 +34,6 @@ const styles = theme => ({
 })
 
 class RelativePostItem extends React.Component {
-  state = {
-    votes_count: this.props.votes_count
-  }
-  voteForPost = (id) => {
-    this.setState((previousState) => {
-      return {
-        votes_count: previousState.votes_count + 1
-      }
-    })
-  }
   linkToDetail = (id) => {
     console.log(id)
     this.props.dispatch(push(`/post/${id}`))
@@ -64,16 +53,11 @@ class RelativePostItem extends React.Component {
                 {tagline}
               </Typography>
             </CardContent>
-            <div className={classes.controls}>
-              <IconButton aria-label="favourite" onClick={ () => this.voteForPost(id)}>
-                <Favourite />
-              </IconButton>
-              <Typography variant="subheading" color="textSecondary">
-                {this.state.votes_count}
-              </Typography>
+            <div className={classes.controls}> 
+              <Vote id={id} vote={this.props.votes_count} dispatch={this.props.dispatch}/>             
               <CardActions>
-          <Button size="small" onClick={ () => this.linkToDetail(id)}>Learn More</Button>
-        </CardActions>
+                <Button size="small" onClick={ () => this.linkToDetail(id)}>Learn More</Button>
+              </CardActions>
             </div>
           </div>
           <CardMedia

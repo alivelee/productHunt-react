@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects'
 import * as actionTypes from '../types'
-import { getPosts, getPostDetail } from '../services/Posts'
+import { getPosts, getPostDetail, voteForPost } from '../services/Posts'
 
 export const getPostsRequest = (payload) => ({
   type: actionTypes.GET_POSTS_REQUEST,
@@ -12,6 +12,9 @@ export const getPostDetailRequest = (payload) => ({
   payload
 })
 
+export const voteForPostRequest = (payload) => ({
+  type: actionTypes.VOTE_POST_REQUEST
+})
 export function * getPostsAction (action) {
   try {
     yield put({
@@ -39,6 +42,14 @@ export function * getPostDetailAction (action) {
       type: actionTypes.GET_POST_DETAIL_SUCCESS,
       payload: postDetailResponse
     })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export function * voteForPostAction (action) {
+  try {
+    const voteReponse = yield call(voteForPost, action.payload)
   } catch (error) {
     console.log(error)
   }
