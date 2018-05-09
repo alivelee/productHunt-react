@@ -14,7 +14,7 @@ class AuthRedirectComponent extends React.Component {
         client_secret: PRODUCT_HUNT_API_SECRET,
         code,
         grant_type: 'authorization_code',
-        redirect_uri: 'https://localhost:3000/callback'
+        redirect_uri: 'https://producthunt-react.herokuapp.com/callback'
       }
     })
   }
