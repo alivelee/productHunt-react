@@ -56,6 +56,12 @@ class UserDetail extends React.Component {
       type: actiontype.GET_USERDETAIL_REQUEST,
       payload: userId
     })
+    this.props.dispatch({
+      type: actionTypes.GET_COLLECTIONS_REQUEST,
+      payload: {
+        'search[subscriber_id]': userId
+      }
+    })
   }
   linkToUserDetail = (id) => {
     this.props.dispatch(push(`/user/${id}`))

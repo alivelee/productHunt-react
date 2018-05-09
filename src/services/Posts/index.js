@@ -24,3 +24,9 @@ export async function getPostDetail (postId) {
     method: 'GET'
   })
 }
+
+export async function voteForPost (postId) {
+  return request(`/api/posts/${postId}/vote`, {
+    method: 'GET'
+  })
+}
