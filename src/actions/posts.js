@@ -7,6 +7,11 @@ export const getPostsRequest = (payload) => ({
   payload
 })
 
+export const getMorePostsRequest = (payload) => ({
+  type: actionTypes.GET_MORE_POST_REQUEST,
+  payload
+})
+
 export const getPostDetailRequest = (payload) => ({
   type: actionTypes.GET_POST_DETAIL_REQUEST,
   payload
@@ -15,6 +20,7 @@ export const getPostDetailRequest = (payload) => ({
 export const voteForPostRequest = (payload) => ({
   type: actionTypes.VOTE_POST_REQUEST
 })
+
 export function * getPostsAction (action) {
   try {
     yield put({
@@ -28,6 +34,26 @@ export function * getPostsAction (action) {
     })
     yield put({
       type: actionTypes.CHANGE_LOADING_POST,
+      payload: false
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export function * getMorePostsAction (action) {
+  try {
+    yield put({
+      type: actionTypes.CHANGE_LOADING_MORE_POST,
+      payload: true
+    })
+    const postsResponse = yield call(getPosts, action.payload)
+    yield put({
+      type: actionTypes.GET_MORE_POST_SUCCESS,
+      payload: postsResponse
+    })
+    yield put({
+      type: actionTypes.CHANGE_LOADING_MORE_POST,
       payload: false
     })
   } catch (error) {

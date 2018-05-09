@@ -11,7 +11,8 @@ import { getTokenAction,
   getPostDetailAction,
   getCollectionDetailAction,
   getUserDetailAction,
-  voteForPostAction
+  voteForPostAction,
+  getMorePostsAction
 } from '../actions'
 
 function * mySaga () {
@@ -26,7 +27,7 @@ function * mySaga () {
   yield takeLatest(actionTypes.GET_COLLECTION_DETAIL_REQUEST, getCollectionDetailAction)
   yield takeLatest(actionTypes.GET_USERDETAIL_REQUEST, getUserDetailAction)
   yield takeLatest(actionTypes.VOTE_POST_REQUEST, voteForPostAction)
-
+  yield takeLatest(actionTypes.GET_MORE_POST_REQUEST, getMorePostsAction)
 }
 
 export default mySaga

@@ -6,7 +6,8 @@ import Grid from 'material-ui/Grid'
 import { withStyles } from 'material-ui/styles'
 import shortid from 'shortid'
 import PostListItem from './PostsItem'
-import dayjs from 'dayjs';
+import dayjs from 'dayjs'
+import LoadMore from '../LoadMore'
 const styles = theme => ({
   root: {
     width: '100%',
@@ -25,6 +26,9 @@ const styles = theme => ({
 })
 
 class Posts extends React.Component {
+  state = {
+    initialPage: 1
+  }
   componentDidMount () {
     this.getAllPost()
   }
@@ -35,11 +39,24 @@ class Posts extends React.Component {
         'per_page': 40
       }
     })
+    this.setState({
+      condition: {
+        'per_page': 40
+      }
+    })
   }
   getMostUpVotedPost = () => {
     this.props.dispatch({
       type: actionTypes.GET_POSTS_REQUEST,
       payload: {
+        'sort_by': 'votes_count',
+        'order': 'desc',
+        'search[featured_month]': dayjs().month() + 1,
+        'search[featured_year]': dayjs().year()
+      }
+    })
+    this.setState({
+      condition: {
         'sort_by': 'votes_count',
         'order': 'desc',
         'search[featured_month]': dayjs().month() + 1,
@@ -55,9 +72,27 @@ class Posts extends React.Component {
         'order': 'asc'
       }
     })
+    this.setState({
+      condition: {
+        'sort_by': 'created_at',
+        'order': 'asc'
+      }
+    })
+  }
+  getMore = () => {
+    this.setState({
+      initialPage: this.state.initialPage + 1
+    })
+    this.props.dispatch({
+      type: actionTypes.GET_MORE_POST_REQUEST,
+      payload: {
+        ...this.state.condition,
+        page: this.state.initialPage + 1
+      }
+    })
   }
   render () {
-    const { postListData, loading } = this.props.posts
+    const { postListData, loading, moreLoading } = this.props.posts
     return (
       <React.Fragment>
         {loading &&
@@ -68,6 +103,7 @@ class Posts extends React.Component {
           </Grid>
         }
         {!loading &&
+        <React.Fragment>
           <Grid container justify='flex-start' className={this.props.classes.gridContainer}>
             <Grid item xs={12} sm={9} md={9}>
               <Grid container>
@@ -92,6 +128,8 @@ class Posts extends React.Component {
               </List>
             </Grid>
           </Grid>
+          <LoadMore action={this.getMore} loading={moreLoading}/>      
+        </React.Fragment>
         }
       </React.Fragment>
     )

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/icons": "^1.0.0-beta.43",
+    "classnames": "^2.2.5",
     "dayjs": "^1.5.17",
     "gh-pages": "^1.1.0",
     "history": "^4.7.2",
