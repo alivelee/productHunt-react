@@ -12,6 +12,9 @@ const styles = theme => ({
   },
   iconVoted: {
     color: red[500]
+  },
+  h3: {
+    display: 'inline-block'
   }
 })
 
@@ -50,7 +53,7 @@ class Vote extends React.Component {
         <IconButton aria-label="favourite" onClick={ () => this.voteForPost(this.props.id)} className={this.state.isVote?classes.iconVoted:classes.icon}>
           <FavoriteIcon />
         </IconButton>
-        <Typography variant="subheading" color="textSecondary">
+        <Typography variant="subheading" color="textSecondary" className={classes.h3}>
           {this.state.votes_count}
         </Typography>
       </React.Fragment>

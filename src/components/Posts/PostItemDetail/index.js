@@ -12,6 +12,7 @@ import Button from 'material-ui/Button'
 import RelativePostItem from './relativePostItem'
 import shortid from 'shortid'
 import { push } from 'react-router-redux'
+import Vote from '../../Vote'
 const styles = theme => ({
   root: {
     flexGrow: 1
@@ -94,7 +95,14 @@ class PostItemDetail extends React.Component {
                 <Typography gutterBottom variant="headline" component="h2">
                   {postDetail.name}
                 </Typography>
-                {postDetail.topics.map(item => <Chip label={item.name} className={classes.chip} key={shortid.generate()} onClick={ () => this.linkToTopic(item.id)}/>)}
+                <Grid container>
+                  <Grid item xs={12} sm={7}>
+                    {postDetail.topics.map(item => <Chip label={item.name} className={classes.chip} key={shortid.generate()} onClick={ () => this.linkToTopic(item.id)}/>)}
+                  </Grid>
+                  <Grid xs={12} sm={2}>
+                    <Vote vote={postDetail.votes_count} dispatch={this.props.dispatch}/>
+                  </Grid>
+                </Grid>
                 <Typography component="p" gutterBottom>
                   {postDetail.description}
                 </Typography>
