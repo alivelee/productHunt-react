@@ -5,7 +5,7 @@ import { withStyles } from 'material-ui/styles'
 import Button from 'material-ui/Button'
 import Grid from 'material-ui/Grid'
 
-const authUrl = `https://api.producthunt.com/v1/oauth/authorize?client_id=${PRODUCT_HUNT_API_KEY}&redirect_uri=https://localhost:3000/callback&response_type=code&scope=public+private`
+const authUrl = `https://api.producthunt.com/v1/oauth/authorize?client_id=${PRODUCT_HUNT_API_KEY}&redirect_uri=https://producthunt-react.herokuapp.com/callback&response_type=code&scope=public+private`
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit
