@@ -3,6 +3,8 @@ import { withStyles } from 'material-ui/styles'
 import Description from '@material-ui/icons/Description'
 import Book from '@material-ui/icons/Book'
 import Chat from '@material-ui/icons/Chat'
+import Bookmark from '@material-ui/icons/Bookmark'
+
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List'
 import {
   Link

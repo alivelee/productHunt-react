@@ -7,7 +7,7 @@ class RedirectFromIndex extends React.Component {
   render () {
     const { isPrivatgeLogin } = this.props.auth
     if (isPrivatgeLogin) {
-      return <Redirect to='/feed'/>
+      return <Redirect to='/topic'/>
     } else {
       return <Redirect to='/post'/>
     }

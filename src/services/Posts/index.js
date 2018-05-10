@@ -13,8 +13,8 @@ export async function getPosts (params) {
   })
 }
 
-export async function getTechPosts () {
-  return request('/api/me/feed', {
+export async function getFeed (params) {
+  return request(`/api/me/feed?${stringify(params)}`, {
     method: 'GET'
   })
 }
