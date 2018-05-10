@@ -28,7 +28,7 @@ import TopicDetail from '../../container/Topics/detail'
 import UserDetail from '../../container/User/detail'
 import LeftNavigation from '../Navigation/left'
 import UserMenu from '../User/userMenu'
-
+import RedirectComponent from '../../container/RedirectComponent'
 const styles = {
   root: {
     flexGrow: 1
@@ -102,7 +102,8 @@ class App extends Component {
           </Drawer>
           <Switch>
             <Route exact path='/callback' component={AuthRedirectComponent} />
-            <Route exact path='/' component={Posts} />
+            <Route exact path='/post' component={Posts} />
+            <Route exact path='/' component={RedirectComponent} />
             <Route exact path='/collection' component={Collections} />
             <Route exact path='/topic' component={Topics} />
             <Route exact path='/topic/:topicId' component={TopicDetail} />
